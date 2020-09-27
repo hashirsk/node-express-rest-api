@@ -2,11 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let querySchema = new Schema({
-  question: {
-    type: String
+  questions : {
+    type: [String]
   },
-  answer: {
-    type: String
+  answers :{
+    type: [String] 
   }
 })
 
