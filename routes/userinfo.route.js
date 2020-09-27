@@ -7,7 +7,7 @@ const userInfoExpressRoute = express.Router();
 let userInfoController = require('../controllers/userinfo.controller');
 
 //Get users
-userInfoExpressRoute.route('/adduser').post(userInfoController.submitUserAction)
-userInfoExpressRoute.route('/getUserById').post(userInfoController.getUserSessionById)
+userInfoExpressRoute.route('/adduser').post(userInfoController.addUserSession)
+userInfoExpressRoute.route('/getUserById').get(userInfoController.getUserSessionById)
 
 module.exports = userInfoExpressRoute;
