@@ -26,7 +26,13 @@ app.use(cors());
 
 //Api root
 const userRoute = require('./routes/student.routes')
+const query = require('./routes/query.routes')
+const userhistory = require('./routes/userhistory.routes')
+const userinfo = require('./routes/userinfo.routes')
 app.use('/endpoint', userRoute)
+app.use('/query', query)
+app.use('/userhistory', userhistory)
+app.use('/userinfo', userinfo)
 
 // Create port
 const port = process.env.PORT || 8080;
