@@ -10,28 +10,15 @@ exports.submitQuestions = (req, res, next) => {
     }
   })
 }
-
-<<<<<<< HEAD
-
-exports.getAnswer = (req, res, next) => {
-  QuerySchema.find( { questions: [req.query] }, (err, data) => {
-    if(err) {
-      return next(err)
-    } else {
-      return res.json(data)
-    }
-  })
-}
-=======
 exports.getAnswers = (req, res, next) => {
   let request = {
     userId: req.body.userId,
     queryAskTime: (new Date()).getTime(),
     userQuery: req.body.query
   }
-  
+
   common.saveUserAction(request, (resultObj) => {
-  
+
     if(resultObj.status == 200) {
       request.id = resultObj.obj._id
     }
@@ -51,7 +38,7 @@ exports.getAnswers = (req, res, next) => {
             ans = data.answers[index]
           }
         }
-  
+
         request.answerBySystem = ans
         request.answerTime = (new Date()).getTime()
         common.updateUserAction(request, (resultObj) => {
@@ -62,4 +49,3 @@ exports.getAnswers = (req, res, next) => {
     })
   })
 }
->>>>>>> 89999b5d44dee72568f05c8fc6aac72c00fe47b5
