@@ -8,5 +8,6 @@ let queryController = require('../controllers/query.controller');
 
 //Get users
 queryExpressRoute.route('/submit-question').post(queryController.submitQuestions)
+queryExpressRoute.route('/getAnswers').post(queryController.getAnswers)
 
 module.exports = queryExpressRoute;

@@ -8,6 +8,7 @@ let userInfoController = require('../controllers/userinfo.controller');
 
 //Get users
 userInfoExpressRoute.route('/adduser').post(userInfoController.addUserSession)
-userInfoExpressRoute.route('/getUserById').get(userInfoController.getUserSessionById)
+userInfoExpressRoute.route('/getUserById/:id').get(userInfoController.getUserSessionById)
 
 module.exports = userInfoExpressRoute;
+ 

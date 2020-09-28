@@ -1,11 +1,22 @@
-const UserHistory = require('../model/userhistory.model')
+const common = require('../common/common')
 
 exports.submitUserAction = (req, res, next) => {
-  UserHistory.create(req.body, (error, data)=>{
-    if(error) {
-      return next(error)
+  common.saveUserAction(req.body, (resultObj) => {
+    if(resultObj.status == 0){
+      return next(resultObj.obj)
     } else {
-      return res.json(data)
+      return res.json(resultObj.obj)
+    }
+  })
+}
+
+
+exports.updateUserAction = (req, res, next) => {
+  const resultObj = common.updateUserAction(req.body, (resultObj) => {
+    if(resultObj.status == 0){
+      return next(resultObj.obj)
+    } else {
+      return res.json(resultObj.obj)
     }
   })
 }
