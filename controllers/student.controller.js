@@ -35,7 +35,7 @@ exports.getStudentById = (req, res) => {
 
 //update a student
 exports.updateStudent = (req, res, next) => {
-  studentSchema.findByIdAndUpdate(req.params.id, {
+  studentSchema.findOneAndUpdate({_id: req.params.id}, {
     $set: req.body
   }, (error, data) => {
     if (error) {
