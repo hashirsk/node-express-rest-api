@@ -9,3 +9,15 @@ exports.submitQuestions = (req, res, next) => {
     }
   })
 }
+
+
+exports.getAnswers = (req, res, next) => {
+
+  QuerySchema.find({ questions: req.body.query}, (err, data) => {
+    if(err) {
+      return next(err)
+    } else {
+      return res.json(data)
+    }
+  })
+}

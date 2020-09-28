@@ -16,7 +16,7 @@ error => {
   console.log('Database could not be connected :' + error)
 })
 
-// Setting up express
+// Setting up express 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
