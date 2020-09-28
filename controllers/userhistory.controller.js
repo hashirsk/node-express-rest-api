@@ -12,7 +12,9 @@ exports.submitUserAction = (req, res, next) => {
 
 
 exports.updateUserAction = (req, res, next) => {
-  UserHistory.create(req.body.id, (error, data)=>{
+  UserHistory.findByIdAndUpdate(req.body.id,{
+    $set: req.body
+  }, (error, data)=>{
     if(error) {
       return next(error)
     } else {
