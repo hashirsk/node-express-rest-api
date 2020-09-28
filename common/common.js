@@ -1,0 +1,28 @@
+const UserHistory = require('../model/userhistory.model')
+
+exports.saveUserAction = (body, callback) => {
+    UserHistory.create(body, (error, data)=>{
+      if(error) {
+        callback({'status': 0 , 'obj': error })
+      } else {
+        callback({'status': 200 , 'obj': data })
+      }
+    })
+  }
+
+
+  exports.updateUserAction = (body, callback) => {
+   
+    console.log('---------========updateUserAction===================')
+    console.log(body)
+    console.log('---------=========updateUserAction==================')
+    UserHistory.findOneAndUpdate({_id: body.id},{
+        $set: body
+      }, (error, data)=>{
+        if(error) {
+            callback({'status': 0 , 'obj': error })
+          } else {
+            callback({'status': 200 , 'obj': data })
+          }
+      })
+  }

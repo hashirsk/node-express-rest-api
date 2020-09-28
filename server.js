@@ -16,6 +16,8 @@ error => {
   console.log('Database could not be connected :' + error)
 })
 
+mongoose.set('useFindAndModify', false);
+
 // Setting up express 
 const app = express();
 app.use(bodyParser.json());
