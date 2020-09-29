@@ -23,17 +23,24 @@ exports.getAnswers = (req, res, next) => {
       request.id = resultObj.obj._id
     }
 
-    QuerySchema.findOne({ questions: request.userQuery}, (err, data) => {
+// QuerySchema.find({}, (err, data)=>{
+//   console.log("--1--");
+//         console.log(data);
+//         console.log("--1--");
+// })
+    QuerySchema.findOne({questions: request.userQuery}, (err, data) => {
       if(err) {
         return next(err)
       } else {
+        // console.log("-------------------===="+request.userQuery);
         console.log(data)
-        let ans = "Hi, we have received your request, Support team will resolve your query asap.\n Thanks :)"
+        // console.log("-------------------===="+request.userQuery);
+        let ans = "Hi, we have received your request, Support team will resolve your query asap.\nThanks :)"
         if(data){
           let index = data.questions.findIndex(el=> el == request.userQuery)
 
           if(index == -1) {
-            ans = "Hi, we have received your request, Support team will resolve your query asap.\n Thanks :)"
+            ans = "Hi, we have received your request, Support team will resolve your query asap.\nThanks :)"
           } else {
             ans = data.answers[index]
           }

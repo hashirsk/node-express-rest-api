@@ -3,7 +3,8 @@ let express = require('express'),
     mongoose = require('mongoose'),
     cors = require('cors'),
     bodyParser = require('body-parser'),
-    dbConfig = require('./db/database');
+    dbConfig = require('./db/database'),
+    morgan = require('morgan');
 
 //Connecting mongo db
 mongoose.Promise = global.Promise;
@@ -18,8 +19,9 @@ error => {
 
 mongoose.set('useFindAndModify', false);
 
-// Setting up express 
+// Setting up express
 const app = express();
+app.use(morgan('dev')); // log every request in console.log();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
