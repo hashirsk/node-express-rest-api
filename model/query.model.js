@@ -8,6 +8,8 @@ let querySchema = new Schema({
   answers :{
     type: [String]
   }
+}, {
+  collection: 'query'
 })
 
 module.exports = mongoose.model('QuerySchema', querySchema)
