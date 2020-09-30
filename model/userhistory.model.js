@@ -18,6 +18,13 @@ let userHistory = new Schema({
   },
   answerBySystem: {
     type: String
+  },
+  platform: {
+    type: [{
+      type: String,
+      enum: ['facebook', 'telegram', 'unknown']
+    }],
+    default: 'unknown'
   }
 })
 

@@ -13,9 +13,6 @@ exports.saveUserAction = (body, callback) => {
 
   exports.updateUserAction = (body, callback) => {
    
-    console.log('---------========updateUserAction===================')
-    console.log(body)
-    console.log('---------=========updateUserAction==================')
     UserHistory.findOneAndUpdate({_id: body.id},{
         $set: body
       }, (error, data)=>{

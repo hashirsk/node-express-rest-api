@@ -14,7 +14,8 @@ exports.getAnswers = (req, res, next) => {
   let request = {
     userId: req.body.userId,
     queryAskTime: (new Date()).getTime(),
-    userQuery: req.body.query
+    userQuery: req.body.query,
+    platform: req.body.platform
   }
 
   common.saveUserAction(request, (resultObj) => {
@@ -23,18 +24,10 @@ exports.getAnswers = (req, res, next) => {
       request.id = resultObj.obj._id
     }
 
-// QuerySchema.find({}, (err, data)=>{
-//   console.log("--1--");
-//         console.log(data);
-//         console.log("--1--");
-// })
     QuerySchema.findOne({questions: request.userQuery}, (err, data) => {
       if(err) {
         return next(err)
       } else {
-        // console.log("-------------------===="+request.userQuery);
-        console.log(data)
-        // console.log("-------------------===="+request.userQuery);
         let ans = "Hi, we have received your request, Support team will resolve your query asap.\nThanks :)"
         if(data){
           let index = data.questions.findIndex(el=> el == request.userQuery)
