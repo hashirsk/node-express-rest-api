@@ -23,3 +23,14 @@ exports.saveUserAction = (body, callback) => {
           }
       })
   }
+
+  exports.getUserHisotry = (body, callback) => {
+   
+    UserHistory.find({}, (error, data)=>{
+        if(error) {
+            callback({'status': 0 , 'obj': error })
+          } else {
+            callback({'status': 200 , 'obj': data })
+          }
+      })
+  }
