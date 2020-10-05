@@ -5,7 +5,7 @@ let express = require('express'),
     bodyParser = require('body-parser'),
     dbConfig = require('./db/database'),
     morgan = require('morgan');
-
+    
 //Connecting mongo db
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
@@ -32,19 +32,19 @@ app.use(cors());
 const userRoute = require('./routes/student.routes')
 const query = require('./routes/query.route')
 const userhistory = require('./routes/userhistory.route')
-const userinfo = require('./routes/userinfo.route')
+const userinfo = require('./routes/userinfo.route');
+const fileToDownload = require('./routes/filedownload.route');
 app.use('/endpoint', userRoute)
 app.use('/query', query)
 app.use('/userhistory', userhistory)
 app.use('/userinfo', userinfo)
+app.use('/filetodownload', fileToDownload)
 
 // Create port
 const port = process.env.PORT || 8080;
 
 //Connecting port
-const server = app.listen(port, () => {
-  console.log('Port connected to: ' + port)
-})
+const server = app.listen(port, console.log('Port connected to: ' + port))
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {

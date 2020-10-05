@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express()
-
 const queryExpressRoute = express.Router();
 
 //User Schema

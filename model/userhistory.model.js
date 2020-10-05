@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 let userHistory = new Schema({
-  userId:{
+  userId: {
     type: String
   },
   queryAskTime: {
@@ -25,6 +25,31 @@ let userHistory = new Schema({
     default: 'unknown'
   },
   attachment: {
+    type: {
+      userId: {
+        type: String,
+        default: ""
+      },
+      ext: {
+        type: String,
+        default: ""
+      },
+      filename: {
+        type: String,
+        default: ""
+      },
+      url: {
+        type: String,
+        default: ""
+      }
+    },
+    default: {}
+  },
+  messageId: {
+    type: String,
+    default: Date.now
+  },
+  replyToMessage: {
     type: String,
     default: ""
   }

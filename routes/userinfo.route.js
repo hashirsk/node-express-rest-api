@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express()
-
 const userInfoExpressRoute = express.Router();
 
 //User Schema
