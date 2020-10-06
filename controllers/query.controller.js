@@ -23,9 +23,9 @@ exports.getAnswers = (req, res, next) => {
   }
 
   common.saveUserAction(request, (resultObj) => {
-
+    const documentId = resultObj.obj._id
     if (resultObj.status == 200) {
-      request.id = resultObj.obj._id
+      request.id = documentId
     }
 
     QuerySchema.findOne({ questions: request.userQuery }, (err, data) => {
@@ -49,7 +49,7 @@ exports.getAnswers = (req, res, next) => {
         common.updateUserAction(request, (resultObj) => {
           console.log(resultObj)
         })
-        return res.json({ 'ans': ans })
+        return res.json({ 'ans': ans, '_id': documentId })
       }
     })
   })
