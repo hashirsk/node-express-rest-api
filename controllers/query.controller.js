@@ -11,8 +11,6 @@ exports.submitQuestions = (req, res, next) => {
   })
 }
 
-
-
 exports.getAnswers = (req, res, next) => {
   let request = {
     userId: req.body.userId,
@@ -20,43 +18,14 @@ exports.getAnswers = (req, res, next) => {
     replyToMessage: req.body.replyToMessage,
     queryAskTime: (new Date()).getTime(),
     userQuery: req.body.query,
-    platform: req.body.platform
+    platform: req.body.platform,
+    attachUrl: req.body.attachment
   }
 
   common.saveUserAction(request, (resultObj) => {
 
     if (resultObj.status == 200) {
       request.id = resultObj.obj._id
-    }
-    const attachUrl = req.body.attachment
-    console.log("It has attachment ?", attachUrl)
-    if (attachUrl) {
-      //load attachment and save it to file
-      const payload = {payloadId: resultObj.obj._id, userid: request.userId}
-      common.downloadFile(attachUrl, `/attachment/${request.userId}`, payload).then(response => {
-        console.log('Here we are getting payload=>', response.payload)
-        //request.attachment = `${req.headers.host}+/+${response.path}`
-        request.attachment = {
-          userid: response.payload.userid,
-          ext: response.payload.ext,
-          filename: response.payload.filename
-        }
-
-        request.id = response.payload.payloadId
-        common.updateUserAction(request, (resultObj) => {
-          //console.log(resultObj)
-        })
-      }).catch( errResponse=> {
-        console.log('Here we are getting payload on error side=>', errResponse)
-        request.id = errResponse.payload.payloadId
-        request.attachment = {
-          url: attachUrl
-        }
-        common.updateUserAction(request, (resultObj) => {
-          //console.log(resultObj)
-        })
-      }
-      )
     }
 
     QuerySchema.findOne({ questions: request.userQuery }, (err, data) => {

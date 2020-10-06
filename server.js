@@ -33,12 +33,10 @@ const userRoute = require('./routes/student.routes')
 const query = require('./routes/query.route')
 const userhistory = require('./routes/userhistory.route')
 const userinfo = require('./routes/userinfo.route');
-const fileToDownload = require('./routes/filedownload.route');
 app.use('/endpoint', userRoute)
 app.use('/query', query)
 app.use('/userhistory', userhistory)
 app.use('/userinfo', userinfo)
-app.use('/filetodownload', fileToDownload)
 
 // Create port
 const port = process.env.PORT || 8080;

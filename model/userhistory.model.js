@@ -25,25 +25,8 @@ let userHistory = new Schema({
     default: 'unknown'
   },
   attachment: {
-    type: {
-      userId: {
-        type: String,
-        default: ""
-      },
-      ext: {
-        type: String,
-        default: ""
-      },
-      filename: {
-        type: String,
-        default: ""
-      },
-      url: {
-        type: String,
-        default: ""
-      }
-    },
-    default: {}
+    type: String,
+    default: ""
   },
   messageId: {
     type: String,
