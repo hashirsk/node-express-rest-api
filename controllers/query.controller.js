@@ -18,8 +18,8 @@ exports.getAnswers = (req, res, next) => {
     replyToMessage: req.body.replyToMessage,
     queryAskTime: (new Date()).getTime(),
     userQuery: req.body.query,
-    platform: req.body.platform,
-    attachUrl: req.body.attachment
+    platform: req.body.platform/*,
+    attachUrl: req.body.attachment*/
   }
 
   common.saveUserAction(request, (resultObj) => {
@@ -28,6 +28,14 @@ exports.getAnswers = (req, res, next) => {
       request.id = documentId
     }
 
+    if(request.userQuery === 'attachment') {
+      request.answerBySystem = "We received your attachment. Thanks"
+        request.answerTime = (new Date()).getTime()
+        common.updateUserAction(request, (resultObj) => {
+          console.log(resultObj)
+        })
+      return res.json({ 'ans': ans, '_id': documentId })
+    } 
     QuerySchema.findOne({ questions: request.userQuery }, (err, data) => {
       console.log('finding query');
       if (err) {
